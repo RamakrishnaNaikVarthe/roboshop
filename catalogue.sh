@@ -6,14 +6,15 @@ echo -e "\e[36m<<<<<<<<< application user >>>>>>>>>\e[0m"
 
 useradd roboshop
 echo -e "-e[36m<<<<<<<< create application directory\e[0m"
+rm -rf /app
 mkdir /app
 echo -e "\e[36m<<<<<<<<< download app content >>>>>>>>>\e[0m"
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
-rm -rf /app
+
 cd /app
 
 unzip /tmp/catalogue.zip
-cd /app
+
 npm install
 cp /home/centos/roboshop/catalogue.service /etc/systemd/system/catalogue.service
 systemctl daemon-reload
