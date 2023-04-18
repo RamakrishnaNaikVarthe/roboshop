@@ -13,7 +13,7 @@ cd /app
 unzip /tmp/user.zip
 
 npm install
-cp /home/centos/roboshop/user.service /etc/systemd/system/user.service
+cp ${script_path}/user.service /etc/systemd/system/user.service
 systemctl daemon-reload
 systemctl enable user
 systemctl start user

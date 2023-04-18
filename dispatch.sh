@@ -1,5 +1,7 @@
+script_path=$dirname $0
+source $(script_path)/common.sh
 yum install golang -y
-useradd roboshop
+useradd &{app_user}
 rm -rf /app
 mkdir /app
 curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip
@@ -9,7 +11,7 @@ unzip /tmp/dispatch.zip
 go mod init dispatch
 go get
 go build
-cp /home/centos/roboshop/dispatch.service /etc/systemd/system/dispatch.service
+cp ${script_path}/dispatch.service /etc/systemd/system/dispatch.service
 systemctl daemon-reload
 systemctl enable dispatch
 systemctl start dispatch
